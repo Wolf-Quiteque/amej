@@ -1154,7 +1154,7 @@ span{
 .service-section:before{
   position: absolute;
   content: '';
-  background: url(../images/service.jpg);
+  background: url(../images/service.png);
   left: 0px;
   top: 0px;
   width: 50%;
