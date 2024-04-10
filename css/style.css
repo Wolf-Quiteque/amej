@@ -1464,7 +1464,7 @@ span{
 .call-back:before{
   position: absolute;
   content: '';
-  background: url(../images/contacto.png);
+  background: url(../images/novocontacto.png);
   width: 36%;
   height: 100%;
   top: 0px;
