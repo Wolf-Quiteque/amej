@@ -143,23 +143,43 @@
     <!-- bread crumb end -->
 
     <!-- service details -->
-    <section class="service-details">
+    <section
+      class="service-details"
+      x-data="{servicos:$store.servicos,deactivate(index){
+        this.servicos.forEach(servico => {
+          servico.active = false;
+        })        
+        this.servicos[index].active = true
+
+      }}"
+    >
       <div class="container">
         <div class="row">
           <div class="col-md-4 col-sm-6 col-xs-12 service-colmun">
             <div class="sidebar">
               <ul class="sidebar-list">
-                <li><a href="#" class="active">Businee Growth</a></li>
-                <li><a href="#">Financial Advise</a></li>
-                <li><a href="#">Business Consulting</a></li>
+                <template x-for="(servico,index) in servicos">
+                  <li>
+                    <a
+                      href="#servico"
+                      :class="servico.active && 'active'"
+                      x-text="servico.servico"
+                      x-on:click="deactivate(index)"
+                      >Businee Growth</a
+                    >
+                  </li>
+                </template>
               </ul>
             </div>
           </div>
-          <div class="col-md-8 col-sm-12 col-xs-12 service-colmun">
+          <div
+            class="col-md-8 col-sm-12 col-xs-12 service-colmun"
+            x-show="servicos[0].active"
+          >
             <div class="sidebar-details">
               <div class="content-style-one">
                 <div class="img-box">
-                  <figure><img src="images/service/1.jpg" alt="" /></figure>
+                  <figure><img src="images/pic/pic3.png" alt="" /></figure>
                 </div>
                 <div class="title">Praesent nec nisl iaculis</div>
                 <div class="text">
@@ -248,13 +268,11 @@
               </div>
               <div class="text">
                 <p>
-                  Lorem ipsum dolor amet consectetur adipisicing elit sed eiusm
-                  tempor incididunt ut labore dolore magna aliqua enim ad minim
-                  veniam quis nostrud exercitation ullam aboris nisi ut aliquip.
+                  Somos especialistas em importação e exportação, dedicados à
+                  excelência operacional e qualidade meticulosa. Destacamo-nos
+                  como parceiros confiáveis, garantindo transações globais
+                  eficientes e transparentes.
                 </p>
-              </div>
-              <div class="button">
-                <a href="#" class="btn-one style-one radi">Subscribe</a>
               </div>
             </div>
           </div>
@@ -262,23 +280,23 @@
             <div class="service-widget footer-widget">
               <div class="footer-title"><h4>Services</h4></div>
               <ul class="list">
-                <li><a href="#">Company History</a></li>
-                <li><a href="#">About Us </a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Histórico da Empresa</a></li>
+                <li><a href="#">Sobre Nós </a></li>
+                <li><a href="#">Contacte-nos</a></li>
+                <li><a href="#">Serviços</a></li>
+                <li><a href="#">Política de Privacidade</a></li>
               </ul>
             </div>
           </div>
           <div class="col-md-2 col-sm-6 col-xs-12 footer-colmun">
             <div class="link-widget footer-widget">
-              <div class="footer-title"><h4>Quick Link</h4></div>
+              <div class="footer-title"><h4>Links Rapidos</h4></div>
               <ul class="list">
-                <li><a href="#">Company History</a></li>
-                <li><a href="#">About Us </a></li>
-                <li><a href="#">Contact Us</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Histórico da Empresa</a></li>
+                <li><a href="#">Sobre Nós </a></li>
+                <li><a href="#">Contacte-nos</a></li>
+                <li><a href="#">Serviços</a></li>
+                <li><a href="#">Política de Privacidade</a></li>
               </ul>
             </div>
           </div>
@@ -286,11 +304,14 @@
             <div class="subscribe-widget footer-widget">
               <div class="footer-title"><h4>NewsLetter</h4></div>
               <div class="text">
-                <p>Lorem ipsum dolor sit amet, consect etur adipisicing.</p>
+                <p>
+                  Somos especialistas em importação e exportação, dedicados à
+                  excelência operacional e qualidade meticulosa.
+                </p>
               </div>
               <div class="input-box">
                 <form action="#">
-                  <input type="email" placeholder="Enter your email" />
+                  <input type="email" placeholder="Seu Email" />
                   <button>
                     <i class="fa fa-paper-plane" aria-hidden="true"></i>
                   </button>
@@ -298,13 +319,7 @@
               </div>
               <ul class="footer-social">
                 <li>
-                  <a href="#" class="active"><i class="fa fa-facebook"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-twitter"></i></a>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-vimeo"></i></a>
+                  <a href="#"><i class="fa fa-instagram"></i></a>
                 </li>
                 <li>
                   <a href="#"><i class="fa fa-linkedin"></i></a>
@@ -321,7 +336,7 @@
     <section class="footer-bottom centered">
       <div class="container">
         <div class="copyright">
-          <p><a href="#">Thebiznes</a> Copyright © 2018 All Right Reserved</p>
+          <p><a href="#">Inix</a> Copyright © 2024 Todo Direito Reservedo</p>
         </div>
       </div>
     </section>
@@ -352,9 +367,9 @@
     <script>
       document.addEventListener("alpine:init", () => {
         Alpine.store("servicos", [
-          { id: 1, servicos: "Importação e Exportação", active: false },
-          { id: 2, servicos: "Revenda especializada", active: false },
-          { id: 3, servicos: "Distribuição e Atacado", active: false },
+          { id: 1, servico: "Importação e Exportação", active: true },
+          { id: 2, servico: "Revenda especializada", active: false },
+          { id: 3, servico: "Distribuição e Atacado", active: false },
         ]);
       });
     </script>
